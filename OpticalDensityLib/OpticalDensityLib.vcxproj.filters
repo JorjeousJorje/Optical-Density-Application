@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков\Calculators">
+      <UniqueIdentifier>{b4f64e0e-e0eb-4f95-bb26-0f055e65e227}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Utility">
+      <UniqueIdentifier>{72501b17-01d5-414e-81d8-6ab9163e07c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Calculators">
+      <UniqueIdentifier>{2dc5f280-63bc-4596-920e-95669177dc00}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ExperimentalSpectrumLoader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="OpticalDencityPipeline.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="AbsorptionCoeffCalculator.h">
+      <Filter>Файлы заголовков\Calculators</Filter>
+    </ClInclude>
+    <ClInclude Include="Calculator.h">
+      <Filter>Файлы заголовков\Calculators</Filter>
+    </ClInclude>
+    <ClInclude Include="DielectricPermeabilityCalculator.h">
+      <Filter>Файлы заголовков\Calculators</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Файлы заголовков\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="InputParameters.h">
+      <Filter>Файлы заголовков\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Файлы заголовков\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SuffixOperators.h">
+      <Filter>Файлы заголовков\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="OpticalDensityCalculator.h">
+      <Filter>Файлы заголовков\Calculators</Filter>
+    </ClInclude>
+    <ClInclude Include="PlasmaFrequencyCalculator.h">
+      <Filter>Файлы заголовков\Calculators</Filter>
+    </ClInclude>
+    <ClInclude Include="ReflectionCoefficientsCalculator.h">
+      <Filter>Файлы заголовков\Calculators</Filter>
+    </ClInclude>
+    <ClInclude Include="RefractiveIndexCalculator.h">
+      <Filter>Файлы заголовков\Calculators</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AbsorptionCoeffCalculator.cpp">
+      <Filter>Файлы ресурсов\Calculators</Filter>
+    </ClCompile>
+    <ClCompile Include="DielectricPermeabilityCalculator.cpp">
+      <Filter>Файлы ресурсов\Calculators</Filter>
+    </ClCompile>
+    <ClCompile Include="OpticalDensityCalculator.cpp">
+      <Filter>Файлы ресурсов\Calculators</Filter>
+    </ClCompile>
+    <ClCompile Include="PlasmaFrequencyCalculator.cpp">
+      <Filter>Файлы ресурсов\Calculators</Filter>
+    </ClCompile>
+    <ClCompile Include="ReflectionCoefficientsCalculator.cpp">
+      <Filter>Файлы ресурсов\Calculators</Filter>
+    </ClCompile>
+    <ClCompile Include="RefractiveIndexCalculator.cpp">
+      <Filter>Файлы ресурсов\Calculators</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

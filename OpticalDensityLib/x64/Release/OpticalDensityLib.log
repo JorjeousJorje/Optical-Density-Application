@@ -1,0 +1,8 @@
+﻿  AbsorptionCoeffCalculator.cpp
+  DielectricPermeabilityCalculator.cpp
+  OpticalDensityCalculator.cpp
+  PlasmaFrequencyCalculator.cpp
+  ReflectionCoefficientsCalculator.cpp
+  RefractiveIndexCalculator.cpp
+  Создание кода...
+  OpticalDensityLib.vcxproj -> C:\Users\georg\source\repos\StaticOpticalDensity\x64\Release\OpticalDensityLib.lib
