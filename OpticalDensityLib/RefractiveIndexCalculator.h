@@ -7,9 +7,11 @@ class RefractiveIndexCalculator final: public Calculator{
 	RealValues _k{};
 	ComplexValues N_{};
 
-	DielectricPermeabilityCalculator _dpCalculator{};
+	const DielectricPermeabilityCalculator& _dpCalculator;
 
 public:
+	explicit RefractiveIndexCalculator(const DielectricPermeabilityCalculator& iRICalculator);
+
 	void calculate() override;
 
 	[[nodiscard]] const ComplexValues& getRefractiveIndex() const;

@@ -1,6 +1,50 @@
 ﻿  Reading Qt configuration (C:/Qt/6.0.4/msvc2019_64/bin/qmake)
+  uic AxisModifierWidget.ui
+  uic CalculationWidget.ui
+  uic InputParametersWidget.ui
+  uic ModeInputParametersWidget.ui
+  uic OpticalDensityApplication.ui
+  uic PlotCustomizer.ui
+  rcc OpticalDensityApplication.qrc
   moc OpticalDensityApplication.h
+   RCC: Warning: No resources in 'C:\Users\georg\source\repos\StaticOpticalDensity\OpticalDensityApplication\OpticalDensityApplication.qrc'.
   moc qcustomplot.h
+  moc PopupMenu.h
+  moc AvailablePlotsSubMenu.h
+  moc PlotCustomizerDialog.h
+  moc SubMenu.h
+  moc AxisModifier.h
+  moc AxisModifierWidget.h
+  moc InputParametersWidget.h
+  moc OpticalDencityPipeline.h
+  moc ModeInputParametersWidget.h
+  moc CalculationWidget.h
+  AvailablePlotsSubMenu.cpp
+  AvailablePlotsSubMenuSignalsSlots.cpp
+  AxisModifier.cpp
+  AxisModifierWidget.cpp
+  CalculationWidget.cpp
+  InputParametersWidget.cpp
+  ModeInputParametersWidget.cpp
+  PlotCustomizerDialog.cpp
+  PopupMenu.cpp
+  OpticalDensityApplicationSlotsSignals.cpp
+  qcustomplot.cpp
+  SubMenu.cpp
+  OpticalDensityApplication.cpp
+  main.cpp
+  qrc_OpticalDensityApplication.cpp
   moc_OpticalDensityApplication.cpp
   moc_qcustomplot.cpp
+  moc_PopupMenu.cpp
+  moc_AvailablePlotsSubMenu.cpp
+  moc_PlotCustomizerDialog.cpp
+  moc_SubMenu.cpp
+  moc_AxisModifier.cpp
+  moc_AxisModifierWidget.cpp
+  moc_InputParametersWidget.cpp
+  moc_OpticalDencityPipeline.cpp
+  moc_ModeInputParametersWidget.cpp
+  moc_CalculationWidget.cpp
+     Создается библиотека C:\Users\georg\source\repos\StaticOpticalDensity\x64\Release\OpticalDensityApplication.lib и объект C:\Users\georg\source\repos\StaticOpticalDensity\x64\Release\OpticalDensityApplication.exp
   OpticalDensityApplication.vcxproj -> C:\Users\georg\source\repos\StaticOpticalDensity\x64\Release\OpticalDensityApplication.exe

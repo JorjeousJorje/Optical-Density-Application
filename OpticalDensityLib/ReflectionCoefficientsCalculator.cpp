@@ -12,15 +12,14 @@ void ReflectionCoefficientsCalculator::calculateAmplitudeReflection()
 
 
 	if (N.size() == 0) {
-		// spdlog::error("<ReflectionCoefficientsCalculator>: calculate N before REFLECTION calculation!");
 		return;
 	}
 
 	_r12.resize(N.size());
 	_r23.resize(N.size());
 
-	_r12 = init_params->N_air - N / (init_params->N_air + N);
-	_r23 = N - init_params->N_m / (N + init_params->N_m);
+	_r12 = (init_params->N_air - N) / (init_params->N_air + N);
+	_r23 = (N - init_params->N_m) / (N + init_params->N_m);
 }
 
 void ReflectionCoefficientsCalculator::calculateIntensityReflection()
@@ -43,8 +42,11 @@ void ReflectionCoefficientsCalculator::calculateAmplitudePhase() {
 	}
 	_phi12.resize(_r12.size());
 
-	constexpr auto phase_setter = [](const std::complex<double>& r) { return r.imag() / r.real(); };
-	std::transform(begin(_phi12), end(_phi12), begin(_phi12), phase_setter);
+	constexpr auto phase_setter = [](const std::complex<double>& r)
+	{
+		return r.imag() / r.real();
+	};
+	std::transform(begin(_r12), end(_r12), begin(_phi12), phase_setter);
 }
 
 

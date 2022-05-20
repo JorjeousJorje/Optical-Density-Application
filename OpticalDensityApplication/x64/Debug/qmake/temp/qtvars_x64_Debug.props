@@ -1,8 +1,11 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-<Qt_DEFINES_>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_OPENGL_LIB;QT_PRINTSUPPORT_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Qt_DEFINES_>
-<Qt_INCLUDEPATH_>C:\Qt\6.0.4\msvc2019_64\include;C:\Qt\6.0.4\msvc2019_64\include\QtOpenGL;C:\Qt\6.0.4\msvc2019_64\include\QtPrintSupport;C:\Qt\6.0.4\msvc2019_64\include\QtWidgets;C:\Qt\6.0.4\msvc2019_64\include\QtGui;C:\Qt\6.0.4\msvc2019_64\include\QtCore;/include;C:\Qt\6.0.4\msvc2019_64\mkspecs\win32-msvc</Qt_INCLUDEPATH_>
+<Qt_DEFINES_>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_OPENGL_LIB;QT_PRINTSUPPORT_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB</Qt_DEFINES_>
+<Qt_INCLUDEPATH_>C:\Users\georg\source\repos\StaticOpticalDensity\OpticalDensityApplication\x64\Debug\qmake\temp;C:\Qt\6.0.4\msvc2019_64\include;C:\Qt\6.0.4\msvc2019_64\include\QtOpenGL;C:\Qt\6.0.4\msvc2019_64\include\QtPrintSupport;C:\Qt\6.0.4\msvc2019_64\include\QtWidgets;C:\Qt\6.0.4\msvc2019_64\include\QtGui;C:\Qt\6.0.4\msvc2019_64\include\QtCore;C:\Users\georg\source\repos\StaticOpticalDensity\OpticalDensityApplication\x64\Debug\qmake\temp;/include;C:\Qt\6.0.4\msvc2019_64\mkspecs\win32-msvc</Qt_INCLUDEPATH_>
+<Qt_STDCPP_>stdcpp17</Qt_STDCPP_>
+<Qt_CL_OPTIONS_>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -permissive- -Zc:__cplusplus -Zc:externConstexpr -utf-8</Qt_CL_OPTIONS_>
 <Qt_LIBS_>C:\Qt\6.0.4\msvc2019_64\lib\Qt6OpenGLd.lib;C:\Qt\6.0.4\msvc2019_64\lib\Qt6PrintSupportd.lib;C:\Qt\6.0.4\msvc2019_64\lib\Qt6Widgetsd.lib;C:\Qt\6.0.4\msvc2019_64\lib\Qt6Guid.lib;C:\Qt\6.0.4\msvc2019_64\lib\Qt6Cored.lib;C:\Qt\6.0.4\msvc2019_64\lib\Qt6EntryPointd.lib;shell32.lib</Qt_LIBS_>
+<Qt_LINK_OPTIONS_>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"</Qt_LINK_OPTIONS_>
 <QMake_QT_SYSROOT_></QMake_QT_SYSROOT_>
 <QMake_QT_INSTALL_PREFIX_>C:/Qt/6.0.4/msvc2019_64</QMake_QT_INSTALL_PREFIX_>
 <QMake_QT_INSTALL_ARCHDATA_>C:/Qt/6.0.4/msvc2019_64</QMake_QT_INSTALL_ARCHDATA_>
@@ -42,7 +45,7 @@
     <QtBkup_QtLibrarySearchPath
       ></QtBkup_QtLibrarySearchPath>
     <QtBkup_QtVars
-      >DEFINES=/-D([^\s=]+(=(\x22(\\\\|\\\x22|[^\x22])*\x22|\S+))?)/$1/;INCLUDEPATH=INCPATH/-(?:iquote|isystem|idirafter|I)\s*(\x22[^\x22]+\x22|[^\s]+)/$1/;LIBS=/(?:(?:\/LIBPATH:|-L)(?:\x22[^\x22]+\x22|[^\s]+))|(\x22[^\x22]+\x22|[^\s]+)/$1/;LIBPATH=LIBS/(?:\/LIBPATH:|-L)(\x22[^\x22]+\x22|[^\s]+)/$1/</QtBkup_QtVars>
+      >DEFINES=/Project/ItemDefinitionGroup/ClCompile/PreprocessorDefinitions;INCLUDEPATH=/Project/ItemDefinitionGroup/ClCompile/AdditionalIncludeDirectories;STDCPP=/Project/ItemDefinitionGroup/ClCompile/LanguageStandard;CL_OPTIONS=/Project/ItemDefinitionGroup/ClCompile/AdditionalOptions;LIBS=/Project/ItemDefinitionGroup/Link/AdditionalDependencies;LINK_OPTIONS=/Project/ItemDefinitionGroup/Link/AdditionalOptions</QtBkup_QtVars>
     <QtBkup_QMakeCodeLines
       ></QtBkup_QMakeCodeLines>
     <QtBkup_QtBuildConfig

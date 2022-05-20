@@ -1,6 +1,3 @@
 ﻿  Reading Qt configuration (C:/Qt/6.0.4/msvc2019_64/bin/qmake)
-  moc OpticalDensityApplication.h
-  moc qcustomplot.h
-  moc_OpticalDensityApplication.cpp
-  moc_qcustomplot.cpp
+  AvailablePlotsSubMenuSignalsSlots.cpp
   OpticalDensityApplication.vcxproj -> C:\Users\georg\source\repos\StaticOpticalDensity\x64\Debug\OpticalDensityApplication.exe

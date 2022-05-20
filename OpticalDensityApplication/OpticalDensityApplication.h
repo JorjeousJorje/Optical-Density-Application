@@ -1,42 +1,38 @@
 #pragma once
 #include <QtWidgets/QMainWindow>
 #include "ui_OpticalDensityApplication.h"
+#include <QFileDialog>
 
-#include "OpticalDencityPipeline.h"
-
+class PopupMenu;
 
 class OpticalDensityApplication : public QMainWindow
 {
-    Q_OBJECT
-	void initPipeline() const {
-		const auto& params = InputParametersSingleton::getInstance();
-		params->K = 1;
-		params->bound_charge_carriers_params.resize(params->K);
-		params->gamma_0 = 1.0;
-		params->free_charge_carriers_mass = 1_electron_mass_units;
-		params->d = 1e-2;
-
-		if (params->K >= 1) {
-			const BoundChargeCarrierParameters param
-			{
-				10e10,
-				2_electron_mass_units,
-				2_electron_charge_units,
-				10.0,
-				2.0
-			};
-
-			params->bound_charge_carriers_params[0] = param;
-		}
-    }
+	Q_OBJECT
 public:
-    OpticalDensityApplication(QWidget *parent = Q_NULLPTR);
+	OpticalDensityApplication(QWidget* parent = Q_NULLPTR);
 
+public slots:
 
-private slots:
-    void onLegendClick(QCPLegend*, QCPAbstractLegendItem*, QMouseEvent*);
+	void moveLegend() const;
+	void selectionChanged();
+	void processAxisSynchronization();
+	void mousePress(QMouseEvent*);
+	void mouseWheel();
+	void graphClicked(QCPAbstractPlottable*, int);
+	void removeSelectedGraph();
+	void removeAllGraphs();
+
+	void showParsingResult(const QString&, bool);
+
+public:
+	bool experimentalSpectrumLoaded{ false };
+	Ui::OpticalDensityApplicationClass ui;
+
+	PopupMenu* _popupMenu;
+	QFileDialog* _fileDialog;
+
 
 private:
-    OpticalDensityPipeline _pipeline{};
-    Ui::OpticalDensityApplicationClass ui;
+	void initSlots();
+	void initQCustomPlot();
 };

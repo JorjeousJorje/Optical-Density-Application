@@ -2,11 +2,9 @@
 #include <algorithm>
 #include <complex>
 #include <limits>
-#include <numbers>
 #include <valarray>
 #include <numeric>
 
-// #include <spdlog/spdlog.h>
 
 #undef  min
 #undef  max
@@ -18,9 +16,10 @@ namespace Utility
 {
 	using vec = std::valarray<double>;
 
+	constexpr double pi = 3.14159265358979323846;
 
 	inline double radians(const double angle) {
-		return angle * std::numbers::pi / 180.0;
+		return angle * pi / 180.0;
 	}
 
 	template <typename E>
@@ -44,6 +43,12 @@ namespace Utility
 			oLinspace.resize(1);
 			oLinspace[0] = iX0;
 			return oLinspace;
+		}
+
+		if (iX0 > iX1) {
+			const auto tmp = iX1;
+			iX1 = iX0;
+			iX0 = tmp;
 		}
 
 		auto step = (iX1 - iX0) / static_cast<double>(iIntervalCount);

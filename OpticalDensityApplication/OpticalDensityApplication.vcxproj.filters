@@ -21,6 +21,18 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="Header Files\CustomWidgets">
+      <UniqueIdentifier>{4e7c85b5-9fd3-4ca3-82ef-7d5fdb674d00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CustomWidgets">
+      <UniqueIdentifier>{580d2617-b013-401c-8601-59dfd6296825}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CustomWidgets\SubMenus">
+      <UniqueIdentifier>{bff6beb2-c705-4475-bc5f-85f5e664d799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CustomWidgets\SubMenus">
+      <UniqueIdentifier>{6b3e1691-f8e9-40e3-b04b-db56f1d75638}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="OpticalDensityApplication.qrc">
@@ -43,10 +55,98 @@
     <ClCompile Include="qcustomplot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OpticalDensityApplicationSlotsSignals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AvailablePlotsSubMenu.cpp">
+      <Filter>Source Files\CustomWidgets\SubMenus</Filter>
+    </ClCompile>
+    <ClCompile Include="SubMenu.cpp">
+      <Filter>Source Files\CustomWidgets\SubMenus</Filter>
+    </ClCompile>
+    <ClCompile Include="PlotCustomizerDialog.cpp">
+      <Filter>Source Files\CustomWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="AvailablePlotsSubMenuSignalsSlots.cpp">
+      <Filter>Source Files\CustomWidgets\SubMenus</Filter>
+    </ClCompile>
+    <ClCompile Include="AxisModifierWidget.cpp">
+      <Filter>Source Files\CustomWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="AxisModifier.cpp">
+      <Filter>Source Files\CustomWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="PopupMenu.cpp">
+      <Filter>Source Files\CustomWidgets\SubMenus</Filter>
+    </ClCompile>
+    <ClCompile Include="InputParametersWidget.cpp">
+      <Filter>Source Files\CustomWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="ModeInputParametersWidget.cpp">
+      <Filter>Source Files\CustomWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="CalculationWidget.cpp">
+      <Filter>Source Files\CustomWidgets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="qcustomplot.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="PlotCustomizerDialog.h">
+      <Filter>Header Files\CustomWidgets</Filter>
+    </QtMoc>
+    <QtMoc Include="AxisModifierWidget.h">
+      <Filter>Header Files\CustomWidgets</Filter>
+    </QtMoc>
+    <QtMoc Include="AvailablePlotsSubMenu.h">
+      <Filter>Header Files\CustomWidgets\SubMenus</Filter>
+    </QtMoc>
+    <QtMoc Include="InputParametersWidget.h">
+      <Filter>Header Files\CustomWidgets</Filter>
+    </QtMoc>
+    <QtMoc Include="OpticalDencityPipeline.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ModeInputParametersWidget.h">
+      <Filter>Header Files\CustomWidgets</Filter>
+    </QtMoc>
+    <QtMoc Include="CalculationWidget.h">
+      <Filter>Header Files\CustomWidgets</Filter>
+    </QtMoc>
+    <QtMoc Include="SubMenu.h">
+      <Filter>Header Files\CustomWidgets\SubMenus</Filter>
+    </QtMoc>
+    <QtMoc Include="PopupMenu.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="AxisModifier.h">
+      <Filter>Header Files\CustomWidgets</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="PlotCustomizer.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="AxisModifierWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="InputParametersWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ModeInputParametersWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="CalculationWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ExperimentalSpectrumLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphExporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

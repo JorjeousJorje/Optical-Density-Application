@@ -38,10 +38,38 @@ void DielectricPermeabilityCalculator::calculate() {
 	};
 
 	std::transform(begin(freq), end(freq), begin(_dielectricPerm), setter);
+
+	const auto realSetter = [=](const double v)
+	{
+		const auto free_charges_input = omega_0_squared / (v * v + 1i * v * gamma_0);
+		const auto bound_charges_input = getBoundChargesInput(omega_bound, v);
+		return (eps_inf * (1.0 - free_charges_input + bound_charges_input)).real();
+	};
+
+	_dielectricPermReal.resize(freq.size());
+	std::transform(begin(freq), end(freq), begin(_dielectricPermReal), realSetter);
+
+	const auto imagSetter = [=](const double v)
+	{
+		const auto free_charges_input = omega_0_squared / (v * v + 1i * v * gamma_0);
+		const auto bound_charges_input = getBoundChargesInput(omega_bound, v);
+		return (eps_inf * (1.0 - free_charges_input + bound_charges_input)).imag();
+	};
+
+	_dielectricPermImag.resize(freq.size());
+	std::transform(begin(freq), end(freq), begin(_dielectricPermImag), imagSetter);
 }
 
 
 const ComplexValues& DielectricPermeabilityCalculator::getDielectricPermeability() const {
 	return  _dielectricPerm;
+}
+
+const RealValues& DielectricPermeabilityCalculator::getRealDielectricPermeability() const {
+	return _dielectricPermReal;
+}
+
+const RealValues& DielectricPermeabilityCalculator::getImagDielectricPermeability() const {
+	return _dielectricPermImag;
 }
 

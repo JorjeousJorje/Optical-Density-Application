@@ -36,13 +36,11 @@ void OpticalDensityCalculator::calculateFilmTransmission() {
 
 	const auto& n = _riCalculator.getRealPart();
 	if(n.size() == 0) {
-		// spdlog::error("<OpticalDensityCalculator>: calculate N before T calculation!");
 		return;
 	}
 
 	const auto& R12 = _rcCalculator.getIntensityCoeff12();
 	if (R12.size() == 0) {
-		// spdlog::error("<OpticalDensityCalculator>: calculate R12 before T calculation!");
 		return;
 	}
 
@@ -54,7 +52,8 @@ void OpticalDensityCalculator::calculateFilmTransmission() {
 
 	const auto numerator = (1.0 - R12) * (1.0 - R23) * std::exp(-D_);
 	const auto R12_times_R23 = R12 * R23;
-	const auto denominator = 1.0 + R12_times_R23 + 2.0 * std::sqrt(R12_times_R23) * std::exp(-2.0 * D_) * std::cos(phase);
+	const auto denominator = 1.0 + R12_times_R23 + 
+										   2.0 * std::sqrt(R12_times_R23) * std::exp(-2.0 * D_) * std::cos(phase);
 	T_ = numerator / denominator;
 	
 }

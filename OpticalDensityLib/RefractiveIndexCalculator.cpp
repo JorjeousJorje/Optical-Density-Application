@@ -2,9 +2,12 @@
 
 
 
-void RefractiveIndexCalculator::calculate() {
-	_dpCalculator.calculate();
+RefractiveIndexCalculator::RefractiveIndexCalculator(const DielectricPermeabilityCalculator& iDPCalculator)
+	: _dpCalculator{ iDPCalculator }
+{
+}
 
+void RefractiveIndexCalculator::calculate() {
 	const auto epsilon = _dpCalculator.getDielectricPermeability();
 	const auto& init_params = InputParametersSingleton::getInstance();
 	const auto& freq = init_params->freq;

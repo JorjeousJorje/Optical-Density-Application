@@ -163,9 +163,7 @@
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DielectricPermeabilityCalculator.h" />
-    <ClInclude Include="ExperimentalSpectrumLoader.h" />
     <ClInclude Include="InputParameters.h" />
-    <ClInclude Include="OpticalDencityPipeline.h" />
     <ClInclude Include="OpticalDensityCalculator.h" />
     <ClInclude Include="PlasmaFrequencyCalculator.h" />
     <ClInclude Include="ReflectionCoefficientsCalculator.h" />

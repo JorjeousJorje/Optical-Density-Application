@@ -9,34 +9,27 @@
 
 
 struct BoundChargeCarrierParameters {
-	double bound_charge_carrier_conc;
-	double bound_charge_carrier_mass;
-	double effective_charge;
-	double bound_charge_osc_freq;
-	double gamma;
+	double bound_charge_carrier_conc{};
+	double bound_charge_carrier_mass{};
+	double effective_charge{};
+	double bound_charge_osc_freq{};
+	double gamma{};
 };
 
-constexpr std::size_t numIntervals = 1000;
-
 struct InitialParameters {
-	double free_charge_carriers_conc{ 10e10 };
-	double free_charge_carriers_mass{ 1_electron_mass_units };
-	double gamma_0{ 1.0 };
+	double free_charge_carriers_conc{};
+	double free_charge_carriers_mass{};
+	double gamma_0{};
 
-	double dielectric_eps_inf{ 2.0 };
-	double v0{ 5.0 };
-	double v1{ 5000.0 };
-	RealValues freq{ Utility::GenerateLinspace(v0, v1, numIntervals) };
+	double dielectric_eps_inf{};
+	double v0{};
+	double v1{};
+	RealValues freq{};
+	double d{};
 
-
-	std::size_t K{ 0 };
-	double d{ 900_nm };
-
-	std::complex<double> N_m{ 1.0 };
-	std::complex<double> N_air{ 1.0 };
-
-	// TODO: make BoundChargeCarrierParameters optional?
-	std::vector<BoundChargeCarrierParameters> bound_charge_carriers_params{ K };
+	std::complex<double> N_m{};
+	std::complex<double> N_air{1.0};
+	std::vector<BoundChargeCarrierParameters> bound_charge_carriers_params{};
 };
 
 
@@ -55,7 +48,5 @@ public:
 		return instance;
 	}
 };
-
-// static InitialParameters initial_params{};
 
 

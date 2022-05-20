@@ -1,80 +1,94 @@
 #include "OpticalDensityApplication.h"
+#include "PopupMenu.h"
+#include "AxisModifierWidget.h"
 
-OpticalDensityApplication::OpticalDensityApplication(QWidget *parent)
-    : QMainWindow(parent)
+OpticalDensityApplication::OpticalDensityApplication(QWidget* parent)
+    : QMainWindow(parent),
+     _popupMenu{ new PopupMenu{ *this } },
+     _fileDialog(new QFileDialog{ this })
 {
     ui.setupUi(this);
-    initPipeline();
 
+
+    _fileDialog->setFileMode(QFileDialog::ExistingFile);
+    _fileDialog->setNameFilter(tr("Text (*.txt *.ascii)"));
+
+    ui.axisModifierWidget->_modifier.setPlot(ui.customPlot);
+    _popupMenu->setPlot(ui.customPlot);
+
+
+    // TODO: remove this line
+    _popupMenu->_availablePlotsSub.pipeline = QSharedPointer<OpticalDensityPipeline>{ &ui.inputParametersWidget->ui.calculationWidget->_pipeline };
+
+    ui.axisModifierWidget->connectToAvailablePlots(&_popupMenu->_availablePlotsSub);
+
+    initQCustomPlot();
+
+    initSlots();
+    ui.customPlot->rescaleAxes();
+}
+
+
+void OpticalDensityApplication::initSlots()
+{
+    connect(ui.customPlot, SIGNAL(selectionChangedByUser()), this, SLOT(selectionChanged()));
+    connect(ui.customPlot, SIGNAL(mouseWheel(QWheelEvent*)), this, SLOT(mouseWheel()));
+    connect(ui.customPlot, SIGNAL(mousePress(QMouseEvent*)), this, SLOT(mousePress(QMouseEvent*)));
+    connect(ui.customPlot, &QCustomPlot::customContextMenuRequested, _popupMenu, &PopupMenu::contextMenuRequest);
+    connect(ui.customPlot, &QCustomPlot::plottableClick, this, &OpticalDensityApplication::graphClicked);
+
+    connect(ui.customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), ui.customPlot->xAxis2, SLOT(setRange(QCPRange)));
+    connect(ui.customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), ui.customPlot->yAxis2, SLOT(setRange(QCPRange)));
+
+    connect(ui.customPlot->xAxis, &QCPAxis::selectionChanged, this, &OpticalDensityApplication::processAxisSynchronization);
+    connect(ui.customPlot->xAxis2, &QCPAxis::selectionChanged, this, &OpticalDensityApplication::processAxisSynchronization);
+    connect(ui.customPlot->yAxis, &QCPAxis::selectionChanged, this, &OpticalDensityApplication::processAxisSynchronization);
+    connect(ui.customPlot->yAxis2, &QCPAxis::selectionChanged, this, &OpticalDensityApplication::processAxisSynchronization);
+
+
+    connect(ui.actionImportData, &QAction::triggered, _fileDialog, &QDialog::exec);
+
+    connect(_fileDialog, &QFileDialog::fileSelected, &_popupMenu->_availablePlotsSub, &AvailablePlotsSubMenu::loadExperimentalSpectrum);
+    connect(&_popupMenu->_availablePlotsSub, &AvailablePlotsSubMenu::emitParingMessage, this, &OpticalDensityApplication::showParsingResult);
+}
+
+void OpticalDensityApplication::initQCustomPlot()
+{
     ui.customPlot->setOpenGl(true);
+	ui.customPlot->legend->setVisible(true);
 
-    // ui.customPlot->setAutoAddPlottableToLegend(true);
-    ui.customPlot->legend->setVisible(true);
+    ui.customPlot->setNoAntialiasingOnDrag(true);
 
-    ui.customPlot->addGraph();
-    ui.customPlot->graph(0)->setPen(QPen(Qt::blue)); // line color blue for first graph
-    ui.customPlot->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
-    ui.customPlot->addGraph();
-    ui.customPlot->graph(1)->setPen(QPen(Qt::red)); // line color red for second graph
-    // generate some points of data (y0 for first, y1 for second graph):
-    // configure right and top axis to show ticks but no labels:
-    // (see QCPAxisRect::setupFullAxesBox for a quicker method to do this)
+    ui.customPlot->legend->setSelectableParts(QCPLegend::spItems);
     ui.customPlot->xAxis2->setVisible(true);
     ui.customPlot->xAxis2->setTickLabels(false);
     ui.customPlot->yAxis2->setVisible(true);
     ui.customPlot->yAxis2->setTickLabels(false);
-    // make left and bottom axes always transfer their ranges to right and top axes:
-    connect(ui.customPlot, &QCustomPlot::legendClick, this, &OpticalDensityApplication::onLegendClick);
 
 
-    connect(ui.customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), ui.customPlot->xAxis2, SLOT(setRange(QCPRange)));
-    connect(ui.customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), ui.customPlot->yAxis2, SLOT(setRange(QCPRange)));
-    // pass data points to graphs:
+    ui.customPlot->legend->setFont(QFont{ "Times" , 12});
+    ui.customPlot->legend->setSelectedFont(QFont{ "Times" , 12, QFont::Bold });
+    ui.customPlot->xAxis->setTickLabelFont(QFont{ "Times" , 10, QFont::Bold });
+    ui.customPlot->yAxis->setTickLabelFont(QFont{ "Times" , 10, QFont::Bold });
 
+    ui.customPlot->setBackground(QBrush(Qt::black));
 
-    _pipeline.startPipeline();
-    const auto& T = _pipeline.T;
-    const auto& n = _pipeline.a;
-    const auto& params = InputParametersSingleton::getInstance();
-    const auto& freq = params->freq;
+    ui.customPlot->xAxis->setTickLabelColor(Qt::white);
+    ui.customPlot->xAxis->setBasePen(QPen(Qt::white));
+    ui.customPlot->xAxis->setLabelColor(Qt::white);
+    ui.customPlot->xAxis->setTickPen(QPen(Qt::white));
+    ui.customPlot->xAxis->setSubTickPen(QPen(Qt::white));
 
+    ui.customPlot->yAxis->setTickLabelColor(Qt::white);
+    ui.customPlot->yAxis->setBasePen(QPen(Qt::white));
+    ui.customPlot->yAxis->setLabelColor(Qt::white);
+    ui.customPlot->yAxis->setTickPen(QPen(Qt::white));
+    ui.customPlot->yAxis->setSubTickPen(QPen(Qt::white));
 
-    // TODO: Do it in separate thread!
-    QVector<double> qFreq(freq.size()), qT(T.size()), qn(n.size());
-    for(auto i = 0u; i < qFreq.size(); ++i) {
-        qFreq[i] = freq[i];
-        qT[i] = T[i];
-        qn[i] = n[i];
-    }
+    ui.customPlot->setContextMenuPolicy(Qt::CustomContextMenu);
 
-    ui.customPlot->graph(0)->setData(qFreq, qn);
-    // ui.customPlot->graph(1)->setData(qFreq, qT);
-    // let the ranges scale themselves so graph 0 fits perfectly in the visible area:
-    ui.customPlot->graph(0)->rescaleAxes();
-    // same thing for graph 1, but only enlarge ranges (in case graph 1 is smaller than graph 0):
-    ui.customPlot->graph(1)->rescaleAxes(true);
-    // Note: we could have also just called ui.customPlot->rescaleAxes(); instead
-    // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:s
-    ui.customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables | QCP::iSelectLegend | QCP::iSelectItems);
+    ui.customPlot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
+                                   QCP::iSelectLegend | QCP::iSelectPlottables | QCP::iMultiSelect);
 }
 
 
-void OpticalDensityApplication::onLegendClick(QCPLegend* iLegend, QCPAbstractLegendItem* iLegendItem, QMouseEvent* iMouseEvent) {
-    const auto legendItem = qobject_cast<QCPPlottableLegendItem*>(iLegendItem);
-
-
-    setWindowIconText("Sex");
-
-    if (legendItem) {
-
-        const auto& plottable = legendItem->plottable();
-        if (plottable->visible()) {
-            plottable->setVisible(false);
-        }
-        else {
-            plottable->setVisible(true);
-        }
-
-        // legendItem->setVisible(false);
-    }
-}
